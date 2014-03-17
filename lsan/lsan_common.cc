@@ -42,7 +42,7 @@ static void InitializeFlags() {
   f->report_objects = false;
   f->resolution = 0;
   f->max_leaks = 0;
-  f->exitcode = 23;
+  f->exitcode = 0;
   f->print_suppressions = true;
   f->suppressions="";
   f->use_registers = true;
@@ -420,12 +420,6 @@ static void DoLeakCheckCallback(const SuspendedThreadsList &suspended_threads,
 void DoLeakCheck() {
   EnsureMainThreadIDIsCorrect();
   BlockingMutexLock l(&global_mutex);
-  static bool already_done;
-  //if (already_done) return;
-  if (already_done) {
-          Report("LeakSanitizer called twice");
-  }
-  already_done = true;
   if (&__lsan_is_turned_off && __lsan_is_turned_off())
       return;
 
