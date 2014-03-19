@@ -2687,7 +2687,7 @@ dwarf_lookup_pc (struct backtrace_state *state, struct dwarf_data *ddata,
     }
 
   if (state->threaded)
-    lines = backtrace_atomic_load_pointer (&u->lines);
+    lines = (struct line*)backtrace_atomic_load_pointer (&u->lines);
 
   new_data = 0;
   if (lines == NULL)
@@ -2870,7 +2870,7 @@ dwarf_fileline (struct backtrace_state *state, uintptr_t pc,
       pp = (struct dwarf_data **) (void *) &state->fileline_data;
       while (1)
 	{
-	  ddata = backtrace_atomic_load_pointer (pp);
+	  ddata = (struct dwarf_data*)backtrace_atomic_load_pointer (pp);
 	  if (ddata == NULL)
 	    break;
 
@@ -3003,7 +3003,7 @@ backtrace_dwarf_add (struct backtrace_state *state,
 	    {
 	      struct dwarf_data *p;
 
-	      p = backtrace_atomic_load_pointer (pp);
+	      p = (struct dwarf_data*)backtrace_atomic_load_pointer (pp);
 
 	      if (p == NULL)
 		break;

@@ -72,7 +72,7 @@ fileline_initialize (struct backtrace_state *state,
   if (!state->threaded)
     fileline_fn = state->fileline_fn;
   else
-    fileline_fn = backtrace_atomic_load_pointer (&state->fileline_fn);
+    fileline_fn = (fileline)backtrace_atomic_load_pointer (&state->fileline_fn);
   if (fileline_fn != NULL)
     return 1;
 

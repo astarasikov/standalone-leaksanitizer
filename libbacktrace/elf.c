@@ -445,7 +445,7 @@ elf_add_syminfo_data (struct backtrace_state *state,
 	    {
 	      struct elf_syminfo_data *p;
 
-	      p = backtrace_atomic_load_pointer (pp);
+	      p = (struct elf_syminfo_data*)backtrace_atomic_load_pointer (pp);
 
 	      if (p == NULL)
 		break;
@@ -490,7 +490,7 @@ elf_syminfo (struct backtrace_state *state, uintptr_t addr,
       pp = (struct elf_syminfo_data **) (void *) &state->syminfo_data;
       while (1)
 	{
-	  edata = backtrace_atomic_load_pointer (pp);
+	  edata = (struct elf_syminfo_data*)backtrace_atomic_load_pointer (pp);
 	  if (edata == NULL)
 	    break;
 
@@ -967,7 +967,7 @@ backtrace_initialize (struct backtrace_state *state, int descriptor,
     {
       fileline current_fn;
 
-      current_fn = backtrace_atomic_load_pointer (&state->fileline_fn);
+      current_fn = (fileline)backtrace_atomic_load_pointer (&state->fileline_fn);
       if (current_fn == NULL || current_fn == elf_nodebug)
 	*fileline_fn = elf_fileline_fn;
     }
