@@ -48,7 +48,7 @@ set(RLSAN_SOURCES
     lsan/lsan_thread.cc)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-add_library(lsan SHARED ${SANITIZER_COMMON_SOURCES} ${INTERCEPTION_SOURCES} ${RLSAN_SOURCES})
+add_library(lsan ${SANITIZER_COMMON_SOURCES} ${INTERCEPTION_SOURCES} ${RLSAN_SOURCES})
 add_definitions(-DPIC -DNDEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -fPIC -fvisibility-inlines-hidden -Wall -W -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long -Wnon-virtual-dtor -ffunction-sections -fdata-sections -Wall -fPIC -fno-builtin -fno-exceptions -fomit-frame-pointer -funwind-tables -fno-stack-protector -fvisibility=hidden -fno-function-sections -O3 -g -Wno-variadic-macros -Wno-non-virtual-dtor -fno-rtti -DSANITIZER_LIBBACKTRACE=0 -DLSAN_STANDALONE -fpermissive)
 
 target_link_libraries(lsan dl pthread backtrace)
