@@ -63,7 +63,7 @@ set(BT_SOURCES
 )
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/libbacktrace)
-add_library(lsan SHARED ${SANITIZER_COMMON_SOURCES} ${INTERCEPTION_SOURCES} ${RLSAN_SOURCES} ${BT_SOURCES})
+add_library(lsan ${SANITIZER_COMMON_SOURCES} ${INTERCEPTION_SOURCES} ${RLSAN_SOURCES} ${BT_SOURCES})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-non-virtual-dtor -fno-rtti -fpermissive -fvisibility-inlines-hidden") 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable -Wno-int-to-pointer-cast")
