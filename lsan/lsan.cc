@@ -28,7 +28,12 @@ namespace __lsan {
 static void InitializeCommonFlags() {
   CommonFlags *cf = common_flags();
   SetCommonFlagsDefaults(cf);
+#ifndef LSAN_STANDALONE
   cf->external_symbolizer_path = GetEnv("LSAN_SYMBOLIZER_PATH");
+#else
+  cf->allow_addr2line = true;
+  cf->external_symbolizer_path = 0;
+#endif
   cf->malloc_context_size = 30;
   cf->detect_leaks = true;
 
