@@ -28,10 +28,10 @@ void SetCommonFlagsDefaults(CommonFlags *f) {
   f->fast_unwind_on_fatal = false;
   f->fast_unwind_on_malloc = true;
   f->handle_ioctl = false;
-  f->malloc_context_size = 1;
+  f->malloc_context_size = 50;
   f->log_path = "stderr";
   f->verbosity = 0;
-  f->detect_leaks = false;
+  f->detect_leaks = true;
   f->leak_check_at_exit = true;
   f->allocator_may_return_null = false;
   f->print_summary = true;
