@@ -41,7 +41,7 @@ static void InitializeFlags() {
   // Default values.
   f->report_objects = false;
   f->resolution = 0;
-  f->max_leaks = 0;
+  f->max_leaks = 30;
   f->exitcode = 0;
   f->print_suppressions = true;
   f->suppressions="";
