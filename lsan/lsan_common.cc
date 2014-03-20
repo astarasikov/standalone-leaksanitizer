@@ -692,7 +692,7 @@ void __lsan_enable() {
 #if CAN_SANITIZE_LEAKS
   if (!__lsan::disable_counter && common_flags()->detect_leaks) {
     Report("Unmatched call to __lsan_enable().\n");
-    Die();
+    return;
   }
   __lsan::disable_counter--;
 #endif
